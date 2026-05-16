@@ -119,7 +119,7 @@ python -m pytest tests/integration/ -v
 
 ### Authentication
 - `POST /api/auth/register` — Register new user
-- `POST /api/auth/login` — Login and receive JWT token
+- `POST /api/auth/login` — Login and receive JWT token.
 
 ### Dashboard
 - `GET /api/dashboard/student` — Student dashboard summary
