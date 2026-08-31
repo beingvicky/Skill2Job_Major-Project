@@ -110,6 +110,9 @@ class ResumeGenerator:
         safe = re.sub(r"[^A-Za-z0-9_-]+", "_", name.strip()).strip("_") or "Student"
         return f"Resume_{safe}_{date.today().isoformat()}.pdf"
 
+    def _build_pdf_with_ai_content(self, profile_dict, profile, ai_content):
+        return self._build_classic(profile_dict, profile, PALETTES["classic"], ai_content)
+
     # ------------------------------------------------------------------
     # Template 1: CLASSIC (blue, traditional)
     # ------------------------------------------------------------------

@@ -390,10 +390,23 @@ def download_resume():
     try:
         upload_folder = current_app.config.get('UPLOAD_FOLDER')
         generated_path = _generated_resume_path(upload_folder, user_id, template_id)
+        generator = ResumeGenerator()
+        user = db.session.get(User, user_id)
+        profile = user.profile if user else None
+
+        if profile is None:
+            raise ValueError("Student profile not found")
+
+        profile_dict = profile.to_dict()
+        profile_dict["name"] = user.name
+        profile_dict["email"] = user.email
+        profile_dict["phone"] = user.phone
+
+        valid, missing = generator.validate_profile(profile_dict)
+        if not valid:
+            raise ValueError(f"Profile is missing required fields: {', '.join(missing)}")
 
         if os.path.exists(generated_path):
-            user = db.session.get(User, user_id)
-            generator = ResumeGenerator()
             filename = generator.get_download_filename(user.name if user else "Student")
             return send_from_directory(
                 os.path.dirname(generated_path),
@@ -403,10 +416,8 @@ def download_resume():
                 mimetype="application/pdf",
             )
 
-        generator = ResumeGenerator()
         pdf_bytes = generator.generate_resume(user_id, template_id=template_id)
 
-        user = db.session.get(User, user_id)
         filename = generator.get_download_filename(user.name)
 
         return Response(
