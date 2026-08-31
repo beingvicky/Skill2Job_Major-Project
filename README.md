@@ -504,7 +504,7 @@ pytest tests/integration/
 
 ## License
 
-This project is developed as a Major Project submission. All rights reserved.
+This project is developed as a Major Project Submission. All rights reserved.
 
 ---
 
