@@ -508,6 +508,4 @@ This project is developed as a Major Project submission. All rights reserved.
 
 ---
 
-<div align="center">
-  Built with ❤️ by <strong>Puneeth J</strong> · <a href="https://github.com/PUNEETH1307">@PUNEETH1307</a>
-</div>
+
