@@ -1,6 +1,7 @@
 import os
+from datetime import datetime, timezone
 
-from flask import Flask, send_from_directory
+from flask import Flask, jsonify, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_cors import CORS
@@ -85,6 +86,14 @@ def create_app(config_name='default'):
 
     from app.routes.placement_routes import placement_bp
     app.register_blueprint(placement_bp)
+
+    @app.get('/api/health')
+    def health_check():
+        return jsonify({
+            'status': 'ok',
+            'service': 'skill2job-api',
+            'timestamp': datetime.now(timezone.utc).isoformat(),
+        })
 
     # Register input sanitization before_request hook
     from app.utils.sanitizer import register_sanitizer

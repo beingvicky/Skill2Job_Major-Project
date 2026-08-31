@@ -23,6 +23,16 @@ class TestSmoke:
         """The test client fixture should be usable for HTTP requests."""
         assert client is not None
 
+    def test_health_endpoint(self, client):
+        """The health endpoint should expose a basic API readiness signal."""
+        response = client.get("/api/health")
+
+        assert response.status_code == 200
+        data = response.get_json()
+        assert data["status"] == "ok"
+        assert data["service"] == "skill2job-api"
+        assert "timestamp" in data
+
     def test_db_session_fixture(self, db_session):
         """The db_session fixture should provide a working session."""
         assert db_session is not None
