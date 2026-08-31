@@ -1,0 +1,947 @@
+/* ============================================
+   Skill2Job — Dashboard Styles
+   Covers Student, Admin, and Coordinator dashboards
+   ============================================ */
+
+/* ---------- Dashboard Container ---------- */
+.dash-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--sp-8);
+  animation: fadeIn 0.4s ease;
+}
+
+/* ---------- Dashboard Header ---------- */
+.dash-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--sp-4);
+}
+
+.dash-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.dash-welcome {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--sp-8);
+}
+
+.dash-logout-btn {
+  padding: 0.5rem 1.2rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.dash-logout-btn:hover {
+  background: var(--danger-light);
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+/* ---------- Dashboard Sections ---------- */
+.dash-section {
+  margin-bottom: var(--sp-8);
+  animation: slideUp 0.4s ease forwards;
+}
+
+.dash-section h2 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--sp-4);
+  padding-bottom: var(--sp-2);
+  border-bottom: 2px solid var(--primary-100);
+}
+
+/* ---------- Dashboard Grid ---------- */
+.dash-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--sp-4);
+  list-style: none;
+  padding: 0;
+}
+
+/* ---------- Dashboard Cards ---------- */
+.dash-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-5);
+  transition: all var(--transition);
+  text-decoration: none;
+  color: var(--text);
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.dash-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.dash-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary-200);
+}
+
+.dash-card:hover::before {
+  opacity: 1;
+}
+
+.dash-card-highlight {
+  border-color: var(--primary-200);
+  background: var(--primary-50);
+}
+
+.dash-card-highlight::before {
+  opacity: 1;
+}
+
+.dash-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--sp-2);
+}
+
+.dash-card-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ---------- Summary Cards ---------- */
+.dash-summary-card {
+  text-align: center;
+  padding: var(--sp-6);
+}
+
+.dash-summary-card-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: var(--sp-2);
+}
+
+.dash-summary-card-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* ---------- Loading & Error States ---------- */
+.dash-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-16);
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.dash-loading::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border: 3px solid var(--border);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  margin-right: var(--sp-3);
+}
+
+.dash-error {
+  background: var(--danger-light);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: var(--radius);
+  padding: var(--sp-5);
+  text-align: center;
+  color: var(--danger-dark);
+}
+
+.dash-error button {
+  margin-top: var(--sp-3);
+  padding: 0.5rem 1.2rem;
+  background: var(--danger);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 500;
+  transition: background var(--transition);
+}
+
+.dash-error button:hover {
+  background: var(--danger-dark);
+}
+
+/* ---------- Empty State ---------- */
+.dash-empty-state {
+  background: var(--surface-alt);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius);
+  padding: var(--sp-6);
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.dash-empty-state p {
+  margin-bottom: var(--sp-3);
+}
+
+.dash-empty-state a,
+.dash-empty-state .dash-card {
+  display: inline-block;
+  background: var(--primary);
+  color: white;
+  padding: 0.6rem 1.5rem;
+  border-radius: var(--radius);
+  font-weight: 500;
+  text-decoration: none;
+  transition: all var(--transition);
+}
+
+.dash-empty-state a:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+/* ---------- Recent Table (Admin/Coordinator) ---------- */
+.dash-recent-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.dash-recent-table th {
+  background: var(--surface-alt);
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  border-bottom: 1px solid var(--border);
+}
+
+.dash-recent-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text);
+}
+
+.dash-recent-table tbody tr:hover {
+  background: var(--surface-alt);
+}
+
+.dash-recent-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ---------- Admin Specific ---------- */
+.dash-admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--sp-4);
+}
+
+.dash-nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  margin-top: var(--sp-4);
+}
+
+.dash-nav-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 0.6rem 1.2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all var(--transition);
+}
+
+.dash-nav-links a:hover {
+  background: var(--primary-50);
+  border-color: var(--primary-200);
+  color: var(--primary);
+  transform: translateY(-1px);
+}
+
+/* ---------- Back Link ---------- */
+.back-link {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--primary);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.back-link:hover {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+  .dash-container {
+    padding: var(--sp-4);
+  }
+
+  .dash-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dash-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-3);
+  }
+
+  .dash-title {
+    font-size: 1.3rem;
+  }
+
+  .dash-summary-card-value {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dash-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================
+   Student Dashboard — Sidebar Layout
+   ============================================ */
+
+.student-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ---------- Student Sidebar ---------- */
+.student-sidebar {
+  width: 250px;
+  background: linear-gradient(180deg, #1e1b4b 0%, #312e81 50%, #3730a3 100%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 200;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-brand {
+  padding: var(--sp-6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-brand a {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: white;
+  text-decoration: none;
+  background: linear-gradient(135deg, #a5b4fc, #c4b5fd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: var(--sp-4) var(--sp-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: 0.7rem var(--sp-4);
+  border-radius: var(--radius);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.sidebar-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.sidebar-link.active {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  font-weight: 600;
+}
+
+.sidebar-link-icon {
+  font-size: 1.1rem;
+}
+
+.sidebar-footer {
+  padding: var(--sp-4) var(--sp-3);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-logout-btn {
+  width: 100%;
+  padding: 0.6rem var(--sp-4);
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--radius);
+  color: #fca5a5;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sidebar-logout-btn:hover {
+  background: rgba(239, 68, 68, 0.25);
+  color: white;
+}
+
+.sidebar-overlay {
+  display: none;
+}
+
+/* ---------- Student Main Content ---------- */
+.student-main {
+  flex: 1;
+  margin-left: 250px;
+  padding: var(--sp-8);
+  background: var(--bg);
+  min-height: 100vh;
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.5rem 0.75rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-bottom: var(--sp-4);
+}
+
+/* ---------- Welcome Section ---------- */
+.welcome-section {
+  margin-bottom: var(--sp-6);
+  animation: fadeIn 0.4s ease;
+}
+
+.welcome-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--sp-1);
+}
+
+.welcome-sub {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+/* ---------- Stats Grid ---------- */
+.stats-grid-student {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-6);
+}
+
+.stat-widget {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-5);
+  text-align: center;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  opacity: 1;
+  animation: fadeIn 0.4s ease;
+}
+
+.stat-widget:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.stat-widget::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+
+.stat-widget-primary::after {
+  background: var(--primary);
+}
+
+.stat-widget-success::after {
+  background: var(--success);
+}
+
+.stat-widget-info::after {
+  background: var(--info);
+}
+
+.stat-widget-accent::after {
+  background: var(--accent);
+}
+
+.stat-widget-icon {
+  font-size: 1.5rem;
+  margin-bottom: var(--sp-2);
+}
+
+.stat-widget-value {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.stat-widget-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: var(--sp-1);
+}
+
+/* ---------- Two Column Grid ---------- */
+.dashboard-grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-6);
+}
+
+.dashboard-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+}
+
+/* ---------- Dashboard Widgets ---------- */
+.dash-widget {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-5);
+  animation: fadeIn 0.4s ease;
+}
+
+.dash-widget-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--sp-4);
+}
+
+.dash-widget-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--sp-4);
+}
+
+.dash-widget-header .dash-widget-title {
+  margin-bottom: 0;
+}
+
+.dash-widget-link {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--primary);
+}
+
+/* ---------- Prediction Ring ---------- */
+.prediction-ring-container {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-6);
+}
+
+.prediction-ring {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+}
+
+.prediction-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.prediction-ring-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.prediction-factors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+}
+
+.factor-badge {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-pill);
+  font-weight: 500;
+}
+
+.factor-positive {
+  background: var(--success-light);
+  color: var(--success-dark);
+}
+
+.factor-negative {
+  background: var(--danger-light);
+  color: var(--danger-dark);
+}
+
+/* ---------- Skill Bars ---------- */
+.skill-bars {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.skill-bar-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+}
+
+.skill-bar-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.skill-bar-count {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.skill-bar-track {
+  height: 6px;
+  background: var(--surface-alt);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.skill-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+/* ---------- Job Recommendation List ---------- */
+.job-rec-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.job-rec-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--sp-3);
+  background: var(--surface-alt);
+  border-radius: var(--radius);
+  transition: background 0.2s ease;
+}
+
+.job-rec-item:hover {
+  background: var(--primary-50);
+}
+
+.job-rec-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.job-rec-title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.job-rec-company {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.job-rec-score {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* ---------- Quick Actions ---------- */
+.quick-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-3);
+}
+
+.quick-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-4);
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--text);
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.quick-action:hover {
+  background: var(--primary-50);
+  border-color: var(--primary-200);
+  transform: translateY(-2px);
+}
+
+.quick-action-emoji {
+  font-size: 1.5rem;
+}
+
+/* ---------- Settings ---------- */
+.settings-toggle-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.settings-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--surface-alt);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.settings-toggle input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+  .stats-grid-student {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dashboard-grid-2col {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .student-sidebar {
+    transform: translateX(-100%);
+  }
+
+  .student-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 199;
+  }
+
+  .student-main {
+    margin-left: 0;
+    padding: var(--sp-4);
+  }
+
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  .stats-grid-student {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .quick-actions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid-student {
+    grid-template-columns: 1fr;
+  }
+
+  .prediction-ring-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* ============================================
+   Admin Dashboard — Sidebar Layout
+   ============================================ */
+
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.admin-sidebar {
+  width: 250px;
+  background: linear-gradient(180deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 200;
+  transition: transform 0.3s ease;
+}
+
+.admin-sidebar .sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.sidebar-role-badge {
+  font-size: 0.65rem;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.admin-main {
+  flex: 1;
+  margin-left: 250px;
+  padding: var(--sp-8);
+  background: var(--bg);
+  min-height: 100vh;
+}
+
+/* Admin stat rows */
+.admin-stat-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.admin-stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--sp-3);
+  background: var(--surface-alt);
+  border-radius: var(--radius);
+}
+
+.admin-stat-label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-transform: capitalize;
+}
+
+.admin-stat-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .admin-sidebar {
+    transform: translateX(-100%);
+  }
+
+  .admin-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .admin-main {
+    margin-left: 0;
+    padding: var(--sp-4);
+  }
+}
