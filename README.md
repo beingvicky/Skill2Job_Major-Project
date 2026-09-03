@@ -1,5 +1,4 @@
-# Skill2Job — AI-Driven Placement Coordination & Skill Mapping System
-
+# Skill2Job — AI-Driven Placement Coordination & Skill Mapping 
 <div align="center">
 
 ![Skill2Job Banner](https://img.shields.io/badge/Skill2Job-AI%20Placement%20System-4f46e5?style=for-the-badge&logo=graduation-cap)
